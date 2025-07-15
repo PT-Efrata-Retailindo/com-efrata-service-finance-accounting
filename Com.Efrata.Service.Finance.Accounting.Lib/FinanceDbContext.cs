@@ -94,6 +94,7 @@ namespace Com.Efrata.Service.Finance.Accounting.Lib
         public DbSet<VBRealizationDocumentModel> VBRealizationDocuments { get; set; }
         public DbSet<VBRealizationDocumentExpenditureItemModel> VBRealizationDocumentExpenditureItems { get; set; }
         public DbSet<VBRealizationDocumentUnitCostsItemModel> VBRealizationDocumentUnitCostsItems { get; set; }
+        public DbSet<VBRealizationDocumentFileModel> VBRealizationDocumentFiles { get; set; }
 
         public DbSet<GarmentPurchasingExpeditionModel> GarmentPurchasingExpeditions { get; set; }
         public DbSet<GarmentDispositionExpeditionModel> GarmentDispositionExpeditions { get; set; }

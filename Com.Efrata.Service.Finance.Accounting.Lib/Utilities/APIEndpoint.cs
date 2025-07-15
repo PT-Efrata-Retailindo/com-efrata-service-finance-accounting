@@ -10,5 +10,8 @@
         public static string Finance { get; set; }
         public static string Sales { get; set; }
         public static string PackingInventory { get; set; }
+
+        public static string StorageAccountName { get; set; }
+        public static string StorageAccountKey { get; set; }
     }
 }
