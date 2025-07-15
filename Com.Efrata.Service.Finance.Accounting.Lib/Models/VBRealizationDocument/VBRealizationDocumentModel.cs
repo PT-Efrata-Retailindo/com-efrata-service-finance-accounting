@@ -3,10 +3,12 @@ using Com.Efrata.Service.Finance.Accounting.Lib.BusinessLogic.VBRealizationDocum
 using Com.Efrata.Service.Finance.Accounting.Lib.BusinessLogic.VBRequestDocument;
 using Com.Efrata.Service.Finance.Accounting.Lib.Models.VBRequestDocument;
 using Com.Efrata.Service.Finance.Accounting.Lib.ViewModels.VBRealizationDocumentNonPO;
+using Com.Efrata.Service.Finance.Accounting.Lib.ViewModels.VBRealizationPaymentNonVB;
 using Com.Moonlay.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Security.Claims;
 using System.Text;
 
 namespace Com.Efrata.Service.Finance.Accounting.Lib.Models.VBRealizationDocument
@@ -155,7 +157,58 @@ namespace Com.Efrata.Service.Finance.Accounting.Lib.Models.VBRealizationDocument
             ReferenceNo = referenceNo;
             this.FlagForUpdate(username, userAgent);
         }
+        public VBRealizationDocumentModel(VBRealizationPaymentNonVBViewModel viewModel)
+        {
+            Type = VBType.NonPO;
+            Index = viewModel.Index;
+            DocumentNo = viewModel.DocumentNo;
+            Date = viewModel.Date.GetValueOrDefault();
+            VBNonPoType = viewModel.VBNonPOType;
+            Amount = viewModel.Amount;
+            BLAWBNumber = viewModel.BLAWBNumber;
+            ContractPONumber = viewModel.ContractPONumber;
+            IsInklaring = viewModel.IsInklaring;
+            if (viewModel.VBDocument != null && viewModel.VBDocument.Id > 0)
+            {
+                VBRequestDocumentId = viewModel.VBDocument.Id;
+                VBRequestDocumentNo = viewModel.VBDocument.DocumentNo;
+                VBRequestDocumentDate = viewModel.VBDocument.Date;
+                VBRequestDocumentRealizationEstimationDate = viewModel.VBDocument.RealizationEstimationDate;
+                VBRequestDocumentCreatedBy = viewModel.VBDocument.CreatedBy;
+                VBRequestDocumentAmount = viewModel.VBDocument.Amount.GetValueOrDefault();
+                VBRequestDocumentPurpose = viewModel.VBDocument.Purpose;
+                IsInklaring = viewModel.VBDocument.IsInklaring;
+            }
 
+            if (viewModel.Unit != null)
+            {
+                SuppliantUnitCode = viewModel.Unit.Code;
+                SuppliantUnitId = viewModel.Unit.Id;
+                SuppliantUnitName = viewModel.Unit.Name;
+
+                if (viewModel.Unit.Division != null)
+                {
+                    SuppliantDivisionCode = viewModel.Unit.Division.Code;
+                    SuppliantDivisionId = viewModel.Unit.Division.Id;
+                    SuppliantDivisionName = viewModel.Unit.Division.Name;
+                }
+            }
+
+            if (viewModel.Currency != null)
+            {
+                CurrencyCode = viewModel.Currency.Code;
+                CurrencyDescription = viewModel.Currency.Description;
+                CurrencyId = viewModel.Currency.Id;
+                CurrencyRate = viewModel.Currency.Rate;
+                CurrencySymbol = viewModel.Currency.Symbol;
+            }
+            DocumentType = viewModel.DocumentType;
+            Position = VBRealizationPosition.Purchasing;
+            Remark = viewModel.Remark;
+            DispositionType = viewModel.DispositionType;
+            ClaimType = viewModel.ClaimType;
+            IsClaim = viewModel.DispositionType == "Klaim" ? true : false;
+        }
         public int VBRequestDocumentId { get; private set; }
         [MaxLength(64)]
         public string VBRequestDocumentNo { get; private set; }
@@ -202,6 +255,9 @@ namespace Com.Efrata.Service.Finance.Accounting.Lib.Models.VBRealizationDocument
         [MaxLength(256)]
         public string ContractPONumber { get; private set; }
         public bool IsInklaring { get; private set; }
+        public string DispositionType { get; private set; }
+        public string ClaimType { get; private set; } //for VBRequestDocumentNonPO, for VB Realization Payment Non VB
+        public bool IsClaim { get; private set; }
         public void SetCurrency(int newCurrencyId, string newCurrencyCode, string newCurrencySymbol, double newCurrencyRate, string newCurrencyDescription, string user, string userAgent)
         {
             if (newCurrencyId != CurrencyId)
@@ -365,6 +421,24 @@ namespace Com.Efrata.Service.Finance.Accounting.Lib.Models.VBRealizationDocument
         public void SetRemark(string remark)
         {
             Remark = remark;
+        }
+
+        public void SetClaimType(string newClaimType, string user, string userAgent)
+        {
+            if (newClaimType != ClaimType)
+            {
+                ClaimType = newClaimType;
+                this.FlagForUpdate(user, userAgent);
+            }
+        }
+
+        public void SetDispositionType(string newDispositionType, string user, string userAgent)
+        {
+            if (newDispositionType != DispositionType)
+            {
+                DispositionType = newDispositionType;
+                this.FlagForUpdate(user, userAgent);
+            }
         }
     }
 }

@@ -16,7 +16,8 @@ namespace Com.Efrata.Service.Finance.Accounting.Lib.BusinessLogic.VBRequestDocum
     public enum RealizationDocumentType
     {
         WithVB = 1,
-        NonVB
+        NonVB,
+        PaymentNonVB
     }
 
     public enum ApprovalStatus

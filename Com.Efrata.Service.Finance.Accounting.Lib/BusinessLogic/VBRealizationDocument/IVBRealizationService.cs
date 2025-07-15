@@ -11,6 +11,6 @@ namespace Com.Efrata.Service.Finance.Accounting.Lib.BusinessLogic.VBRealizationD
     {
         PostingJournalDto ReadByReferenceNo(string referenceNo);
         ReadResponse<VBRealizationDocumentModel> Read(int page, int size, string order, List<string> select, string keyword, string filter);
-        Task<Tuple<VBRealizationDocumentModel, List<VBRealizationDocumentExpenditureItemModel>, List<VBRealizationDocumentUnitCostsItemModel>>> ReadByIdAsync(int id);
+        Task<Tuple<VBRealizationDocumentModel, List<VBRealizationDocumentExpenditureItemModel>, List<VBRealizationDocumentUnitCostsItemModel>, List<VBRealizationDocumentFileModel>, List<string>>> ReadByIdAsync(int id);
     }
 }

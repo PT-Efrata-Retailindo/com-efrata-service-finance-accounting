@@ -108,7 +108,9 @@ namespace Com.Efrata.Service.Finance.Accounting.WebApi.Controllers.v1
                         {
                             Header = model.Item1,
                             Items = model.Item2,
-                            UnitCostItems = model.Item3
+                            UnitCostItems = model.Item3,
+                            DocumentsFileName = model.Item4,
+                            DocumentsFile = model.Item5
                         });
                     return Ok(Result);
                 }
