@@ -326,11 +326,11 @@ namespace Com.Efrata.Service.Finance.Accounting.WebApi
                 context.Database.Migrate();
             }
 
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1");
-            });
+            //app.UseSwagger();
+            //app.UseSwaggerUI(c =>
+            //{
+            //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1");
+            //});
             app.UseAuthentication();
             app.UseCors(FINANCE_POLICY);
             app.UseMvc();
