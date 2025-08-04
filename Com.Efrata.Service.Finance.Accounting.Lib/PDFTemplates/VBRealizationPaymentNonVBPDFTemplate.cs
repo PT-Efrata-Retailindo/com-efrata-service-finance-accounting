@@ -109,9 +109,9 @@ namespace Com.Efrata.Service.Finance.Accounting.Lib.PDFTemplates
             headerTable3.AddCell(cellHeaderBody2);
 
             // Document number
-            //cellHeaderBody3.Colspan = 7;
-            //cellHeaderBody3.Phrase = new Phrase($"{viewModel.DocumentNo}", bold_font);
-            //headerTable3.AddCell(cellHeaderBody3);
+            cellHeaderBody3.Colspan = 7;
+            cellHeaderBody3.Phrase = new Phrase($"{viewModel.DocumentNo}", bold_font);
+            headerTable3.AddCell(cellHeaderBody3);
 
             // Document number
             cellHeaderBody3.Colspan = 7;
