@@ -240,14 +240,18 @@ namespace Com.Efrata.Service.Finance.Accounting.Lib.ViewModels.VBRealizationPaym
 
             if (DocumentsFile.Count() > 0 && DispositionType == "Klaim")
             {
-                if (DocumentsFileName.Sum(s => s.amount) != Items.Sum(s => s.Total))
-                    yield return new ValidationResult("Nominal Disposisi dan total nota harus sama!", new List<string> { "CompareNominalDisposisi" });
+                //if (DocumentsFileName.Sum(s => s.amount) != Items.Sum(s => s.Total))
+                //    yield return new ValidationResult("Nominal Disposisi dan total nota harus sama!", new List<string> { "CompareNominalDisposisi" });
+                if (DocumentsFileName.Sum(s => s.amount) < Items.Sum(s => s.Total))
+                    yield return new ValidationResult("Nominal beban unit tidak boleh lebih besar dari Nominal Disposisi!", new List<string> { "CompareNominalDisposisi" });
             }
 
             if (DocumentsFile.Count() > 0 && DispositionType == "Non Klaim")
             {
-                if (DocumentsFileName.Sum(s => s.amount) != Items.Sum(s => s.Total))
-                    yield return new ValidationResult("Nominal Disposisi dan total nota harus sama!", new List<string> { "CompareNominalDisposisi" });
+                //if (DocumentsFileName.Sum(s => s.amount) != Items.Sum(s => s.Total))
+                //    yield return new ValidationResult("Nominal Disposisi dan total nota harus sama!", new List<string> { "CompareNominalDisposisi" });
+                if (DocumentsFileName.Sum(s => s.amount) < Items.Sum(s => s.Total))
+                    yield return new ValidationResult("Nominal beban unit tidak boleh lebih besar dari Nominal Disposisi!", new List<string> { "CompareNominalDisposisi" });
             }
 
 
