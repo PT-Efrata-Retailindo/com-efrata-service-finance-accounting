@@ -174,24 +174,29 @@ namespace Com.Efrata.Service.Finance.Accounting.Lib.BusinessLogic.Services.VBRea
 
 
                 //var upload = await UploadFile(model.Id, model.CreatedUtc, vm.DocumentsFile, vm.DocumentsFileName.Select( s => s.documentName).ToList(), vm.DocumentsPath);
+                if (vm.DocumentsFileName.Count() > 0)
+                {
 
-                var upload = await UploadFile(model.Id, model.CreatedUtc, vm.DocumentsFile, vm.DocumentsFileName.First().documentName, null);
-                //string jsonString = upload;
-                List<string> list = JsonConvert.DeserializeObject<List<string>>(upload);
 
-                var listC = vm.DocumentsFileName.Zip(list, (file, detail) => {
-                    return new DocumentFileViewModel
+                    var upload = await UploadFile(model.Id, model.CreatedUtc, vm.DocumentsFile, vm.DocumentsFileName.First().documentName, null);
+                    //string jsonString = upload;
+                    List<string> list = JsonConvert.DeserializeObject<List<string>>(upload);
+
+                    var listC = vm.DocumentsFileName.Zip(list, (file, detail) =>
                     {
-                        documentName = file.documentName,
-                        amount = file.amount,
-                        documentsPath= detail
-                    };
-                }).ToList();
+                        return new DocumentFileViewModel
+                        {
+                            documentName = file.documentName,
+                            amount = file.amount,
+                            documentsPath = detail
+                        };
+                    }).ToList();
 
-                var documentFile = AddDocumentFiles(model.Id, listC);
+                    var documentFile = AddDocumentFiles(model.Id, listC);
 
-                _dbContext.VBRealizationDocumentFiles.AddRange(documentFile);
-                await _dbContext.SaveChangesAsync();
+                    _dbContext.VBRealizationDocumentFiles.AddRange(documentFile);
+                    await _dbContext.SaveChangesAsync();
+                }
                 //if (vm.VBNonPOType == "Dengan Nomor VB")
                 //{
                 //    var vbRequest = _dbContext.VBRequestDocuments.FirstOrDefault(s => s.Id == vm.VBDocument.Id);
