@@ -19,5 +19,6 @@ namespace Com.Efrata.Service.Finance.Accounting.Lib.ViewModels.VBRealizationDocu
         public IncomeTaxViewModel IncomeTax { get; set; }
         public string IncomeTaxBy { get; set; }
         public decimal Total { get; set; }
+        public string Invoice { get; set; }
     }
 }

@@ -104,6 +104,7 @@ using Com.Efrata.Service.Finance.Accounting.Lib.BusinessLogic.Interfaces.Reports
 using Com.Efrata.Service.Finance.Accounting.Lib.BusinessLogic.Services.Reports.LocalSalesDebtorReport;
 using Com.Efrata.Service.Finance.Accounting.Lib.BusinessLogic.GarmentFinance.Reports.LocalDebtorCard;
 using Com.Efrata.Service.Finance.Accounting.Lib.BusinessLogic.GarmentFinance.Reports.LocalBankCashReceiptMonthlyRecap;
+using Com.Efrata.Service.Finance.Accounting.Lib.BusinessLogic.AzureStorage;
 
 namespace Com.Efrata.Service.Finance.Accounting.WebApi
 {
@@ -128,6 +129,8 @@ namespace Com.Efrata.Service.Finance.Accounting.WebApi
             APIEndpoint.Finance = Configuration.GetValue<string>("FinanceEndpoint") ?? Configuration["FinanceEndpoint"];
             APIEndpoint.Sales = Configuration.GetValue<string>("SalesEndpoint") ?? Configuration["SalesEndpoint"];
             APIEndpoint.PackingInventory = Configuration.GetValue<string>("PackingInventoryEndpoint") ?? Configuration["PackingInventoryEndpoint"];
+            APIEndpoint.StorageAccountName = Configuration.GetValue<string>("StorageAccountName") ?? Configuration["StorageAccountName"];
+            APIEndpoint.StorageAccountKey = Configuration.GetValue<string>("StorageAccountKey") ?? Configuration["StorageAccountKey"];
         }
 
         private void RegisterServices(IServiceCollection services)
@@ -209,7 +212,9 @@ namespace Com.Efrata.Service.Finance.Accounting.WebApi
                 .AddTransient<ILocalSalesDebtorReportService, LocalSalesDebtorReportService>()
                 .AddTransient<IGarmentFinanceLocalDebtorCardReportService, GarmentFinanceLocalDebtorCardReportService>()
                 .AddTransient<IGarmentFinanceExportSalesOutstandingReportService, GarmentFinanceExportSalesOutstandingReportService>()
-                .AddTransient<IGarmentFinanceLocalBankCashReceiptMonthlyRecapService, GarmentFinanceLocalBankCashReceiptMonthlyRecapService>();
+                .AddTransient<IGarmentFinanceLocalBankCashReceiptMonthlyRecapService, GarmentFinanceLocalBankCashReceiptMonthlyRecapService>()
+                .AddTransient<IAzureDocumentService, AzureDocumentService>()
+                .AddTransient<IVBRealizationPaymentNonVBService, VBRealizationPaymentNonVBService>();
         }
 
 

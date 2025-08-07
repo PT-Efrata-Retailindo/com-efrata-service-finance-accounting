@@ -39,7 +39,7 @@ namespace Com.Efrata.Service.Finance.Accounting.Lib.Models.VBRealizationDocument
             }
             IncomeTaxBy = viewModel.IncomeTaxBy;
             VBRealizationDocumentId = vbRealizationDocumentId;
-
+            InvoiceNo = viewModel.Invoice;
         }
 
         public VBRealizationDocumentExpenditureItemModel(int headerId, FormItemDto element)
@@ -97,7 +97,7 @@ namespace Com.Efrata.Service.Finance.Accounting.Lib.Models.VBRealizationDocument
         public string BLAWBNumber { get; private set; }
         public decimal PPnAmount { get; private set; }
         public decimal PPhAmount { get; private set; }
-
+        public string InvoiceNo { get; private set; }
         public void SetDate(DateTimeOffset newDate, string user, string userAgent)
         {
             if(newDate != Date)
