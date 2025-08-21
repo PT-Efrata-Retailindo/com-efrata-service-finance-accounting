@@ -675,11 +675,11 @@ namespace Com.Efrata.Service.Finance.Accounting.Lib.PDFTemplates
 
 
             #region Footer
-            PdfPTable table = new PdfPTable(3)
+            PdfPTable table = new PdfPTable(5)
             {
                 WidthPercentage = 100
             };
-            float[] widths = new float[] { 1f, 1f, 1f, /*1f, 1f */};
+            float[] widths = new float[] { 1f, 1f, 1f, 1f, 1f };
             table.SetWidths(widths);
             PdfPCell cell = new PdfPCell()
             {
@@ -694,28 +694,11 @@ namespace Com.Efrata.Service.Finance.Accounting.Lib.PDFTemplates
             table.AddCell(cell);
             cell.Phrase = new Phrase("Controller\n\n\n\n\n\n\n(                   )", bold_font);
             table.AddCell(cell);
-            
+            cell.Phrase = new Phrase("General Manager\n\n\n\n\n\n\n(                   )", bold_font);
+            table.AddCell(cell);
+            cell.Phrase = new Phrase("Manager Akt & Keu\n\n\n\n\n\n\n(                   )", bold_font);
+            table.AddCell(cell);
             document.Add(table);
-
-
-            PdfPTable table2 = new PdfPTable(2)
-            {
-                WidthPercentage = 100
-            };
-            float[] widths2 = new float[] { 1f, 1f };
-            table2.SetWidths(widths2);
-            PdfPCell cell2 = new PdfPCell()
-            {
-                Border = Rectangle.NO_BORDER,
-                HorizontalAlignment = Element.ALIGN_CENTER,
-                VerticalAlignment = Element.ALIGN_MIDDLE,
-            };
-
-            cell2.Phrase = new Phrase("\n\n\nDirektur Utama\n\n\n\n\n\n\n(                   )", bold_font);
-            table2.AddCell(cell2);
-            cell2.Phrase = new Phrase("\n\n\nManager Akt & Keu\n\n\n\n\n\n\n(                   )", bold_font);
-            table2.AddCell(cell2);
-            document.Add(table2);
             #endregion Footer
 
             document.Close();
