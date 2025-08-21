@@ -833,11 +833,11 @@ namespace Com.Efrata.Service.Finance.Accounting.Lib.PDFTemplates
             cell.Phrase = new Phrase($"({data.CreatedBy})", normal_font);
             cell.Colspan = 1;
             table.AddCell(cell);
-            cell.Phrase = new Phrase("Akutansi", normal_font);
-            table.AddCell(cell);
             cell.Phrase = new Phrase("Keuangan", normal_font);
             table.AddCell(cell);
-            cell.Phrase = new Phrase("Kasie Pembelian", normal_font);
+            cell.Phrase = new Phrase("Akuntansi", normal_font);
+            table.AddCell(cell);
+            cell.Phrase = new Phrase("Manager Pembelian", normal_font);
             cell.Colspan = 2;
             table.AddCell(cell);
             cell.Phrase = new Phrase("Pembelian", normal_font);
