@@ -675,11 +675,11 @@ namespace Com.Efrata.Service.Finance.Accounting.Lib.PDFTemplates
 
 
             #region Footer
-            PdfPTable table = new PdfPTable(5)
+            PdfPTable table = new PdfPTable(4)
             {
                 WidthPercentage = 100
             };
-            float[] widths = new float[] { 1f, 1f, 1f, 1f, 1f };
+            float[] widths = new float[] { 1f, 1f, 1f, 1f/*, 1f*/ };
             table.SetWidths(widths);
             PdfPCell cell = new PdfPCell()
             {
@@ -692,12 +692,12 @@ namespace Com.Efrata.Service.Finance.Accounting.Lib.PDFTemplates
             table.AddCell(cell);
             cell.Phrase = new Phrase("Manager Purchasing\n\n\n\n\n\n\n(                   )", bold_font);
             table.AddCell(cell);
-            cell.Phrase = new Phrase("Controller\n\n\n\n\n\n\n(                   )", bold_font);
-            table.AddCell(cell);
-            cell.Phrase = new Phrase("General Manager\n\n\n\n\n\n\n(                   )", bold_font);
-            table.AddCell(cell);
             cell.Phrase = new Phrase("Manager Akt & Keu\n\n\n\n\n\n\n(                   )", bold_font);
             table.AddCell(cell);
+            cell.Phrase = new Phrase("Controller\n\n\n\n\n\n\n(                   )", bold_font);
+            table.AddCell(cell);
+            //cell.Phrase = new Phrase("General Manager\n\n\n\n\n\n\n(                   )", bold_font);
+            //table.AddCell(cell);
             document.Add(table);
             #endregion Footer
 
